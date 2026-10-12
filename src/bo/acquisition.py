@@ -4,9 +4,6 @@ from botorch.optim import optimize_acqf
 
 def propose_next_point(model, train_y, bounds, num_restarts=10, raw_samples=64):
     """Return the single next point worth evaluating, chosen by maximizing Expected Improvement over the GP's current posterior.
-
-    train_y: all y-values observed so far — train_y.max() is the current best, the baseline "improvement" is measured against.
-    bounds: (2, d), the function's real domain.
     """
     acqf = LogExpectedImprovement(model, best_f=train_y.max())
 
